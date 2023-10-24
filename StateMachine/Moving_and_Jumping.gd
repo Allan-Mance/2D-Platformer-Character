@@ -1,10 +1,10 @@
 extends Node
 
-onready var SM = get_parent()
-onready var player = get_node("../..")
+@onready var SM = get_parent()
+@onready var player = get_node("../..")
 
 func _ready():
-	yield(player, "ready")
+	await player.ready
 
 func physics_process(_delta):
 	if not player.is_on_floor():
@@ -16,12 +16,12 @@ func physics_process(_delta):
 	if Input.is_action_just_released("jump"):
 		player.velocity.y = 0
 		player.velocity += player.jump_power
-		player.move_and_slide(player.velocity, Vector2.UP)
+		player.move_and_slide()
 		SM.set_state("Falling")
 	elif player.is_moving():
 		player.set_animation("Moving")
 		player.velocity += player.move_speed * player.move_vector()
-		player.move_and_slide(player.velocity, Vector2.UP)
+		player.move_and_slide()
 	else:
 		player.velocity.x = 0
 		SM.set_state("Jumping")

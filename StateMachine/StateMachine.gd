@@ -1,8 +1,8 @@
 extends Node
 
-onready var state = null
-onready var previous_state = null
-onready var state_name = ""
+@onready var state = null
+@onready var previous_state = null
+@onready var state_name = ""
 
 func _ready():
 	if get_child_count():
@@ -22,7 +22,7 @@ func _unhandled_input(event):
 
 func set_state(s):
 	state_name = s
-	var new_state = get_node(s)
+	var new_state = get_node(NodePath(s))
 	if new_state != null:
 		if state != null:
 			if state.has_method("end"):
