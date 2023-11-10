@@ -1,11 +1,17 @@
-[gd_scene load_steps=31 format=3 uid="uid://0h0u8gvdbl54"]
+[gd_scene load_steps=37 format=3 uid="uid://0h0u8gvdbl54"]
 
 [ext_resource type="Texture2D" uid="uid://ce4m0pyqioe0d" path="res://icon.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://u0x5n0qvu4sm" path="res://Assets/PixelAtlas.png" id="1_860cg"]
 [ext_resource type="Script" path="res://Camera.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://vadncemsu6em" path="res://Assets/Coin1.png" id="2_mjh14"]
 [ext_resource type="Script" path="res://Player/Coins.gd" id="3_fkgi8"]
+[ext_resource type="Script" path="res://Enemy/Enemy_Container.gd" id="5_6b7a1"]
+[ext_resource type="PackedScene" uid="uid://dothrbq81d2i0" path="res://Enemy/monster.tscn" id="6_6oatb"]
+[ext_resource type="AudioStream" uid="uid://1x1fugyf5ch7" path="res://Assets/Running Music.mp3" id="9_kwvqv"]
+[ext_resource type="AudioStream" uid="uid://6055mkgv6cd7" path="res://Assets/pickupCoin.wav" id="10_fill1"]
+[ext_resource type="AudioStream" uid="uid://bskwcjr7yh23h" path="res://Assets/jump.wav" id="10_gp81i"]
 [ext_resource type="Script" path="res://StateMachine/Player_Container.gd" id="12"]
+[ext_resource type="AudioStream" uid="uid://ck4cto6llynk5" path="res://Assets/running.wav" id="12_dvg23"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_81ijw"]
 texture = ExtResource("1_860cg")
@@ -261,6 +267,11 @@ script = ExtResource("3_fkgi8")
 [node name="Player_Container" type="Node2D" parent="."]
 script = ExtResource("12")
 
+[node name="Enemy_Container" type="Node2D" parent="."]
+script = ExtResource("5_6b7a1")
+
+[node name="Monster" parent="Enemy_Container" instance=ExtResource("6_6oatb")]
+
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("4")
 format = 2
@@ -310,3 +321,18 @@ offset_right = 410.0
 offset_bottom = 40.0
 text = "Coins: 0"
 vertical_alignment = 1
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_kwvqv")
+volume_db = -29.918
+autoplay = true
+
+[node name="Jump_Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_gp81i")
+
+[node name="Coin_Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_fill1")
+
+[node name="Run_Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_dvg23")
+volume_db = -17.095

@@ -16,6 +16,10 @@ var direction = 1
 @export var leap_speed = 200
 @export var max_leap = 1200
 
+var Jump_Sound = null
+var Coin_Sound = null
+var Run_Sound = null
+
 var moving = false
 var is_jumping = false
 var double_jumped = false
@@ -35,6 +39,9 @@ func _physics_process(_delta):
 
 func is_moving():
 	if Input.is_action_pressed("left") or Input.is_action_pressed("right"):
+		Run_Sound = get_node_or_null("/root/Game/Run_Sound")
+		if Run_Sound != null:
+			Run_Sound.play()
 		return true
 	return false
 
@@ -46,6 +53,9 @@ func _unhandled_input(event):
 		direction = -1
 	if event.is_action_pressed("right"):
 		direction = 1
+	if Input.is_action_pressed("jump"):
+		if Jump_Sound != null:
+			Jump_Sound.play()
 
 func set_animation(anim):
 	if $AnimatedSprite2D.animation == anim: return
@@ -74,8 +84,12 @@ func set_wall_raycasts(is_enabled):
 
 func die():
 	queue_free()
+	
 
 
 func _on_coin_collector_body_entered(body):
 	if body.name == "Coins":
 		body.get_coin(global_position)
+		Coin_Sound = get_node_or_null("/root/Game/Coin_Sound")
+		if Coin_Sound != null:
+			Coin_Sound.play()
