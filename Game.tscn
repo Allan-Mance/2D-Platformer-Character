@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://vadncemsu6em" path="res://Assets/Coin1.png" id="2_mjh14"]
 [ext_resource type="Script" path="res://Player/Coins.gd" id="3_fkgi8"]
 [ext_resource type="Script" path="res://Enemy/Enemy_Container.gd" id="5_6b7a1"]
-[ext_resource type="PackedScene" uid="uid://dothrbq81d2i0" path="res://Enemy/monster.tscn" id="6_6oatb"]
+[ext_resource type="PackedScene" uid="uid://dvqd4r3cm1blx" path="res://Enemy/monster.tscn" id="6_6oatb"]
 [ext_resource type="AudioStream" uid="uid://1x1fugyf5ch7" path="res://Assets/Running Music.mp3" id="9_kwvqv"]
 [ext_resource type="AudioStream" uid="uid://6055mkgv6cd7" path="res://Assets/pickupCoin.wav" id="10_fill1"]
 [ext_resource type="AudioStream" uid="uid://bskwcjr7yh23h" path="res://Assets/jump.wav" id="10_gp81i"]
@@ -266,6 +266,8 @@ script = ExtResource("3_fkgi8")
 
 [node name="Player_Container" type="Node2D" parent="."]
 script = ExtResource("12")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Player_Container"]
 
 [node name="Enemy_Container" type="Node2D" parent="."]
 script = ExtResource("5_6b7a1")
