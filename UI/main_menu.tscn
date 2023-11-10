@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0shkjys46vmm"]
+[gd_scene load_steps=5 format=3 uid="uid://c0shkjys46vmm"]
 
 [ext_resource type="Script" path="res://UI/main_menu.gd" id="1_bnrn0"]
 [ext_resource type="FontFile" uid="uid://dxpnn7p0q85ff" path="res://Assets/Lemon-Regular.ttf" id="1_yibsk"]
+[ext_resource type="Texture2D" uid="uid://djcbcg7lq2ibh" path="res://Assets/background.jpg" id="2_3k2dh"]
+[ext_resource type="AudioStream" uid="uid://c6lomsk1kyhyf" path="res://Assets/Main_Menu_Music.mp3" id="3_47a0d"]
 
 [node name="Main_Menu" type="Control"]
 layout_mode = 3
@@ -11,6 +13,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bnrn0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_3k2dh")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -59,6 +64,10 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_yibsk")
 theme_override_font_sizes/font_size = 20
 text = "Quit"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_47a0d")
+autoplay = true
 
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
